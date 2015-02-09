@@ -6,19 +6,35 @@ from PyQt4 import QtCore
 import sys
 
 class Microhope_Main(QtGui.QMainWindow):
-	def __init__(self):
-		QtGui.QMainWindow.__init__(self)
+	def __init__(self , app , parent = None):
+		QtGui.QMainWindow.__init__(self,parent)
 		
+		self.app = app 
 		self.setFixedSize(1250,710) #here we fix the size to 1250x710 
 									#and prevent the resizing the window , and disable the maximising and minimising . 
 	def initToolbar(self):
-		self.new = QtGui.QAction(QtGui.QIcon("icons/new.png"),"New",self) #for creating new files  . 
+		# New Action
+		self.new = QtGui.QAction(QtGui.QIcon("icons/document-new.png"),"New",self) #for creating new files  . 
 		self.new.setShortcut("Ctrl+N")
 		self.new.setStatusTip("Create a new document.")
+		self.new.triggered.connect(self.new)
+		##             ##           ## 
+		#Open Action
+		self.open_file = QtGui.QAction(QtGui.QIcon("icons/document-open.png"),"Open file",self)
+		self.open_file.setStatusTip("Open existing document")
+		self.open_file.setShortcut("Ctrl+O")
+		self.open_file.self.openAction.triggered.connect(self.open)
+	# function for new document .
+	def new(self):
+		new = Microhope_Main(self.app)
+		new.show()
+	def open(self):
+		
+
 
 if __name__ == "__main__":
 	
 	app = QtGui.QApplication(sys.argv)
-	mh = Microhope_Main()
+	mh = Microhope_Main(app)
 	mh.show()
 	sys.exit(app.exec_())
