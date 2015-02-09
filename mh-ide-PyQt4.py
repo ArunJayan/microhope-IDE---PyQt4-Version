@@ -12,9 +12,9 @@ class Microhope_Main(QtGui.QMainWindow):
 		self.setFixedSize(1250,710) #here we fix the size to 1250x710 
 									#and prevent the resizing the window , and disable the maximising and minimising . 
 	def initToolbar(self):
-		self.new = QtGui.QAction(QtGui.QIcon("icons/new.png"),"New",self)
-		
-		
+		self.new = QtGui.QAction(QtGui.QIcon("icons/new.png"),"New",self) #for creating new files  . 
+		self.new.setShortcut("Ctrl+N")
+		self.new.setStatusTip("Create a new document.")
 
 if __name__ == "__main__":
 	
