@@ -11,6 +11,7 @@ class Microhope_Main(QtGui.QMainWindow):
 		
 		self.app = app 
 		self.filename = ""
+		self.changesSaved = True
 		self.setFixedSize(1250,710) #here we fix the size to 1250x710 
 									#and prevent the resizing the window , and disable the maximising and minimising . 
 	def initToolbar(self):
@@ -38,13 +39,21 @@ class Microhope_Main(QtGui.QMainWindow):
 		new = Microhope_Main(self.app)
 		new.show()
 	def open(self):
-		self.filename = QtGui.QFileDialog.getOpenFileName(self, 'Open File',".","(*.*)")
+		self.filename = QtGui.QFileDialog.getOpenFileName(self, 'Open File',".","")
 		if self.filename:
 			with open(self.filename,"rt",encoding="utf-8") as file:
 				self.text.setText(file.read())
 	def save(self):
 		if not self.filename:
 			self.filename = QtGui.QFileDialog.getSaveFileName(self, 'Save File')
+		if self.filename:
+			if os.path.splitText(self.filename)[1]=='':
+				self.filename += ".c"
+		with open(self.filename,"wt", encoding="utf-8") as file:
+			file.write(self.text.toHtml())
+		
+		self.changesSaved = True
+			
 	
 	
 	
