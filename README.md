@@ -1,2 +1,2 @@
-# microhope-IDE---PyQt4-Version
-microhope IDE using PyQt4
+MicroHOPE IDE Latest Version using PyQt4
+
